@@ -1,0 +1,56 @@
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size:14px;
+  height:100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+md-toolbar h1 {
+  font-size: 1.250em;
+  font-weight: 400;
+}
+
+md-list-item > button {
+  width:100%;
+  text-align:left !important;
+}
+
+md-list .md-button.selected {
+  color: #03a9f4;
+}
+
+md-sidenav  md-list {
+  padding: 0px 0px 8px 0px;
+}
+
+.chat-container {
+    height: 500px;
+}
+
+.chat-bubbles {
+    min-height: 400px;
+    overflow: auto;
+}
+
+.chat-message {
+    display: -webkit-inline-box;
+}
+
+.chat-sender {
+    padding: 0 4px;
+}
+.chat-text {
+    border-radius: 10px;
+    max-width: 300px;
+    color: white;
+    background-color: blue;
+}
+
+.chat-text.left {
+    background-color: grey;
+}
+
+.chat-message-form md-input-container {
+    margin: 10px 0 0 0;
+}

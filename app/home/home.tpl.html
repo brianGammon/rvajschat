@@ -1,0 +1,34 @@
+<div layout="row">
+  <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+  <h3>{{ul.selected.name}}</h3>
+</div>
+
+<div layout="column" layout-padding class="chat-container">
+  <div layout="column" layout-padding class="chat-bubbles md-whiteframe-z2">
+    <div layout="column" layout-padding layout-align="{{msg.sender !== ul.localUser ? 'start start' : 'start end'}}" class="chat-message"
+      ng-repeat="msg in ul.chats">
+      <div class="chat-sender">{{msg.sender}}</div>
+      <div class="chat-text" ng-class="{'left' : msg.sender !== ul.localUser }">{{msg.text}}</div>
+    </div>
+    <div id="bottom"></div>
+
+  </div>
+
+  <div class="chat-message-form md-whiteframe-z2">
+    <form novalidate ng-submit="ul.submitted()">
+      <div layout="row">
+        <md-input-container flex class="md-block">
+          <label>Message</label>
+          <input md-maxlength="140" name="newMessage" ng-model="ul.newMessage" ng-focus="ul.scrollIt()" />
+        </md-input-container>
+        <md-button type="submit">
+          Send
+        </md-button>
+      </div>
+
+    </form>
+
+
+  </div>
+
+</div>
