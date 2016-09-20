@@ -12,10 +12,13 @@
     .module('home')
     .factory('Chat', Chat);
 
-  function Chat($timeout) {
+  function Chat(User, $timeout) {
     var ChatBase = {},
         chatCache = {},
         callbacks = [];
+
+    // Clear chats cached on sign in change
+    User.onAuth(reset);
 
     ChatBase.onMessageReceived = function (cb) {
       callbacks.push(cb);
@@ -56,6 +59,10 @@
     return ChatBase;
 
     // Internal methods to stub fake users and chats
+    function reset() {
+      chatCache = {};
+    }
+
     function getMockUsers() {
       return [
         {
