@@ -11,6 +11,10 @@ md-toolbar h1 {
   font-weight: 400;
 }
 
+.home-content {
+  position:fixed;
+}
+
 md-list-item > button {
   width:100%;
   text-align:left !important;
@@ -24,13 +28,27 @@ md-sidenav  md-list {
   padding: 0px 0px 8px 0px;
 }
 
+.sidenav-title {
+  padding-left: 10px;
+}
+
+.chat-content {
+  background-color: whitesmoke;
+}
+
 .chat-container {
     height: 500px;
 }
 
 .chat-bubbles {
+    background-color: white;
+    margin-bottom: 5px;
     min-height: 400px;
     overflow: auto;
+}
+
+.chat-message-form {
+  background-color: white;
 }
 
 .chat-message {

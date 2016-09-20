@@ -11,6 +11,7 @@
       'ngMaterial',
       'ui.router',
       'home',
-      'user'
+      'user',
+      'ngMdIcons'
     ]);
 }());
