@@ -12,12 +12,17 @@
     .module('home')
     .controller('HomeCtrl', HomeCtrl);
 
-  function HomeCtrl(Chat, $mdSidenav, $anchorScroll, $timeout, $scope) {
-    var vm = this;
+  function HomeCtrl(User, Chat, $mdSidenav, $anchorScroll, $timeout, $scope, $state) {
+    var vm = this,
+        currentUser = User.currentUser;
 
+    // Redirect to login if not signed in
+    if (!currentUser) {
+      $state.go('signup');
+    }
     // Initialize base state
     vm.currentMessage = '';
-    vm.localUser = 'Brian Gammon';
+    vm.localUser = currentUser;
     vm.selected = null;
     vm.users = Chat.getChatUsers();
     $mdSidenav('left').then(function (left) {
@@ -30,7 +35,7 @@
     // Methods called from views
     vm.selectUser = function (user) {
       vm.selected = angular.isNumber(user) ? vm.users[user] : user;
-      vm.chats = Chat.getChats(vm.localUser, vm.selected.name);
+      vm.chats = Chat.getChats(vm.localUser.userName, vm.selected.name);
       scrollToBottom();
       $timeout(function () {
         $scope.$broadcast('setFocus');
@@ -39,7 +44,7 @@
 
     vm.submit = function () {
       if (vm.newMessage) {
-        Chat.sendMessage(vm.localUser, vm.selected.name, vm.newMessage);
+        Chat.sendMessage(vm.localUser.userName, vm.selected.name, vm.newMessage);
         vm.newMessage = '';
         scrollToBottom();
       }

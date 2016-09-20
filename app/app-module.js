@@ -12,6 +12,7 @@
       'ui.router',
       'home',
       'user',
-      'ngMdIcons'
+      'ngMdIcons',
+      'ngMessages'
     ]);
 }());

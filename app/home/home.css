@@ -9,6 +9,14 @@ html, body {
 md-toolbar h1 {
   font-size: 1.250em;
   font-weight: 400;
+  margin-left: 10px;
+}
+
+.userForm {
+  min-width: 350px;
+}
+.header-text {
+  font-size: small;
 }
 
 .home-content {
@@ -21,7 +29,8 @@ md-list-item > button {
 }
 
 md-list .md-button.selected {
-  color: #03a9f4;
+  color: #2196F3;
+  font-weight: bold;
 }
 
 md-sidenav  md-list {
@@ -62,13 +71,18 @@ md-sidenav  md-list {
     border-radius: 10px;
     max-width: 300px;
     color: white;
-    background-color: blue;
+    background-color:#2196F3;
 }
 
 .chat-text.left {
-    background-color: grey;
+    background-color: #9E9E9E;
 }
 
 .chat-message-form md-input-container {
     margin: 10px 0 0 0;
+}
+
+.signin-text {
+  background-color: #2196F3;
+  margin: -8px;
 }

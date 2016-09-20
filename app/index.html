@@ -12,15 +12,37 @@
   <!-- endbower -->
   <!-- inject:css -->
   <!-- endinject -->
+  <style type="text/css">
+    /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+
+    [ng\:cloak],
+    [ng-cloak],
+    [data-ng-cloak],
+    [x-ng-cloak],
+    .ng-cloak,
+    .x-ng-cloak {
+      display: none !important;
+    }
+  </style>
 </head>
 
-<body layout="column">
-  <md-toolbar layout="row" layout-align="center">
+<body layout="column" ng-cloak>
+  <md-toolbar layout="row" layout-align="space-between center" ng-controller="MainCtrl as main">
     <h1>RVA.js Chat</h1>
+    <div layout="row" layout-align="center center" ng-if="main.currentUser">
+      <div layout="column">
+        <div class="header-text">Signed In: {{main.currentUser.userName}}</div>
+      </div>
+      <md-button class="md-icon-button" ng-click="main.logout()" aria-label="Sign Out">
+        <ng-md-icon icon="logout"></ng-md-icon>
+      </md-button>
+    </div>
   </md-toolbar>
 
   <md-content flex>
-      <ui-view></ui-view>
+    <ui-view></ui-view>
   </md-content>
 
   <!-- bower:js -->

@@ -1,0 +1,47 @@
+<div layout="column" layout-margin layout-align="center center">
+  <div layout="column" layout-padding class="userForm md-whiteframe-z1">
+    <div class="signin-text">
+      Sign Up To Chat
+    </div>
+    <form name="user.loginForm" novalidate>
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <input required type="name" name="userName" ng-model="user.credentials.userName" minlength="4" maxlength="100" />
+        <div ng-messages="user.loginForm.userName.$error">
+          <div ng-message-exp="['required', 'minlength', 'maxlength']">
+            Required, and must be 4 to 100 characters long
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input ng-model="user.credentials.password" name="password" type="password" minlength="6" required/>
+        <div ng-messages="user.loginForm.password.$error">
+          <div ng-message-exp="['required', 'minlength']">
+            Password must be at least 6 characters.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Confirm Password</label>
+        <input ng-model="user.credentials.confirmPassword" name="confirmPassword" type="password" compare-to="user.credentials.password"
+          required/>
+        <div ng-messages="user.loginForm.confirmPassword.$error">
+          <div ng-message-exp="['required','compareTo']">
+            Required and must match the Password field.
+          </div>
+        </div>
+      </md-input-container>
+
+      <div layout="column" layout-align="center center">
+        <div>
+          <p>Already have an account? <a data-ui-sref="signin">Sign in here</a></p>
+        </div>
+        <div flex></div>
+        <md-button type="submit" ng-click="user.signUp()" class="md-raised md-primary">Sign Up</md-button>
+      </div>
+    </form>
+  </div>
+</div>

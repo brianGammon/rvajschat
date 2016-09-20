@@ -1,0 +1,39 @@
+<div layout="column" layout-margin layout-align="center center">
+  <div layout="column" layout-padding class="userForm md-whiteframe-z1">
+    <div class="signin-text">
+      Sign In To Chat
+    </div>
+    <form name="user.loginForm" novalidate>
+      <md-input-container class="md-block">
+        <label>User Name</label>
+        <input required type="name" name="userName" ng-model="user.credentials.userName" minlength="4" maxlength="100"
+        />
+
+        <div ng-messages="user.loginForm.userName.$error">
+          <div ng-message-exp="['required', 'minlength', 'maxlength']">
+            Required, and must be 4 to 100 characters long
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input ng-model="user.credentials.password" name="password" type="password" required/>
+        <div ng-messages="user.loginForm.password.$error">
+          <div ng-message-exp="['required']">
+            Please enter your password.
+          </div>
+        </div>
+      </md-input-container>
+
+      <div layout="column" layout-align="center center">
+        <div>
+          <p>Don't have an account yet? <a data-ui-sref="signup">Sign up here</a></p>
+        </div>
+        <div flex></div>
+        <md-button type="submit" ng-click="user.signIn()" class="md-raised md-primary">Login</md-button>
+      </div>
+    </form>
+  </div>
+
+</div>

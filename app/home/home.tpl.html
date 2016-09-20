@@ -1,4 +1,4 @@
-<div class="home-content" layout="row" layout-fill>
+<div class="home-content" layout="row" layout-fill ng-cloak>
   <md-sidenav ng-click="home.toggleList()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
     <div class="sidenav-title">
       <h3>Pick Someone To Chat With:</h3>
@@ -6,7 +6,7 @@
     </div>
     <md-list>
       <md-list-item ng-repeat="user in home.users">
-        <md-button ng-click="home.selectUser(user)" ng-class="{'selected' : it === home.selected }">
+        <md-button ng-click="home.selectUser(user)" ng-class="{'selected' : user === home.selected }">
           {{user.name}}
         </md-button>
       </md-list-item>
@@ -15,19 +15,20 @@
 
   <div flex class="chat-content">
 
-    <div layout="row" layout-padding>
+    <div layout="row" layout-align="start center" layout-padding>
       <md-button class="md-icon-button" hide-gt-sm ng-click="home.toggleList()" aria-label="Show User List">
-        <ng-md-icon icon="group"></ng-md-icon>
+        <ng-md-icon icon="menu"></ng-md-icon>
       </md-button>
-      <div>{{home.selected.name || 'Select a user to chat'}}</div>
+      <div ng-if="home.selected">Chatting with: <strong>{{home.selected.name}}</strong></div>
+      <div ng-if="!home.selected">No one selected</div>
     </div>
 
     <div layout="column" layout-padding class="chat-container">
       <div layout="column" layout-padding class="chat-bubbles md-whiteframe-z2">
-        <div layout="column" layout-padding layout-align="{{msg.sender !== home.localUser ? 'start start' : 'start end'}}" class="chat-message"
+        <div layout="column" layout-padding layout-align="{{msg.sender !== home.localUser.userName ? 'start start' : 'start end'}}" class="chat-message"
           ng-repeat="msg in home.chats">
           <div class="chat-sender">{{msg.sender}}</div>
-          <div class="chat-text" ng-class="{'left' : msg.sender !== home.localUser }">{{msg.text}}</div>
+          <div class="chat-text" ng-class="{'left' : msg.sender !== home.localUser.userName }">{{msg.text}}</div>
         </div>
         <div id="bottom"></div>
 
