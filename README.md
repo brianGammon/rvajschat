@@ -11,16 +11,21 @@ A chat client for the October 2016 RVA.js meetup
 
 ## Setup
 1. Clone the git repository by running:
+2. 
     ```
     git clone https://github.com/brianGammon/rvajschat.git
+    
     cd rvajschat
     ```
 2. Install the dependencies:
+3. 
     ```
     npm install
+    
     bower install
     ```
 3. Start the development environment:
+4. 
     ```
     gulp
     ```
