@@ -21,8 +21,6 @@
       vm.currentUser = user;
       if (!user) {
         $state.go('signup');
-      } else {
-        $state.go('home');
       }
     });
 

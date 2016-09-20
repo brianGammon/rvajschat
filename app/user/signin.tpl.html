@@ -3,6 +3,9 @@
     <div class="signin-text">
       Sign In To Chat
     </div>
+    <div class="error-message" ng-if="user.errorMessage">
+      {{user.errorMessage}}
+    </div>
     <form name="user.loginForm" novalidate>
       <md-input-container class="md-block">
         <label>User Name</label>

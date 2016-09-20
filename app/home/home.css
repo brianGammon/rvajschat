@@ -86,3 +86,9 @@ md-sidenav  md-list {
   background-color: #2196F3;
   margin: -8px;
 }
+
+.error-message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: red;
+}

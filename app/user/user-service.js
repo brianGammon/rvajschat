@@ -12,7 +12,7 @@
     .module('user')
     .factory('User', User);
 
-  function User() {
+  function User($q) {
     var UserBase = {},
         callbacks = [],
         currentUser = null;
@@ -20,20 +20,44 @@
     // instance member to track logged in user
     UserBase.currentUser = currentUser;
 
+    // observer pattern to notify when auth changes
     UserBase.onAuth = function (cb) {
       callbacks.push(cb);
     };
 
     UserBase.signIn = function (credentials) {
-      authChanged({
-        userName: credentials.userName
-      });
+      // stub for development
+      // using $q to similate async request to API
+      var deferred = $q.defer(),
+          user = {
+            userName: credentials.userName
+          };
+
+      authChanged(user);
+      deferred.resolve(user);
+
+      return deferred.promise;
     };
 
     UserBase.signUp = function (credentials) {
-      authChanged({
-        userName: credentials.userName
-      });
+      // stub for development
+      // using $q to similate async request to API
+      var deferred = $q.defer(),
+          user;
+
+      // fake a common API error condition
+      if (credentials.userName === 'Tester') {
+        deferred.reject('User name is taken');
+      } else {
+        // hard code user and return
+        user = {
+          userName: credentials.userName
+        };
+        authChanged(user);
+        deferred.resolve(user);
+      }
+
+      return deferred.promise;
     };
 
     UserBase.signOut = function () {
