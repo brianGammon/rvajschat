@@ -16,7 +16,6 @@
     /**
          * Hide when Angular is not yet loaded and initialized
          */
-
     [ng\:cloak],
     [ng-cloak],
     [data-ng-cloak],
@@ -28,22 +27,22 @@
   </style>
 </head>
 
-<body layout="column" ng-cloak>
-  <md-toolbar layout="row" layout-align="space-between center" ng-controller="MainCtrl as main">
-    <h1>RVA.js Chat</h1>
-    <div layout="row" layout-align="center center" ng-if="main.currentUser">
-      <div layout="column">
-        <div class="header-text">Signed In: {{main.currentUser.userName}}</div>
+<body ng-cloak>
+  <div class="body-wrapper">
+    <md-toolbar layout="row" layout-align="space-between center" ng-controller="MainCtrl as main">
+      <h1>RVA.js Chat</h1>
+      <div layout="row" layout-align="center center" ng-if="main.currentUser">
+        <div layout="column">
+          <div class="header-text">Signed In: {{main.currentUser.userName}}</div>
+        </div>
+        <md-button class="md-icon-button" ng-click="main.logout()" aria-label="Sign Out">
+          <ng-md-icon icon="logout"></ng-md-icon>
+        </md-button>
       </div>
-      <md-button class="md-icon-button" ng-click="main.logout()" aria-label="Sign Out">
-        <ng-md-icon icon="logout"></ng-md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
+    </md-toolbar>
 
-  <md-content flex>
     <ui-view></ui-view>
-  </md-content>
+  </div>
 
   <!-- bower:js -->
   <!-- endbower -->

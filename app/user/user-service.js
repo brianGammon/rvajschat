@@ -15,7 +15,9 @@
   function User($q) {
     var UserBase = {},
         callbacks = [],
-        currentUser = null;
+        currentUser = {
+          userName: 'BrianG'
+        };
 
     // instance member to track logged in user
     UserBase.currentUser = currentUser;

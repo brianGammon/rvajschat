@@ -1,9 +1,13 @@
 html, body {
   font-family: 'Roboto', sans-serif;
   font-size:14px;
-  height:100%;
+  /*height:100%;*/
   margin: 0px;
   padding: 0px;
+}
+
+.body-wrapper {
+  height: 100%;
 }
 
 md-toolbar h1 {
@@ -13,14 +17,10 @@ md-toolbar h1 {
 }
 
 .userForm {
-  min-width: 350px;
+  min-width: 310px;
 }
 .header-text {
   font-size: small;
-}
-
-.home-content {
-  position:fixed;
 }
 
 md-list-item > button {
