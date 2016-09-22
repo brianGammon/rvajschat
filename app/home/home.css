@@ -67,6 +67,7 @@ md-list .md-button.selected {
     max-width: 300px;
     color: white;
     background-color:#2196F3;
+    word-break: break-all;
 }
 
 .chat-text.left {

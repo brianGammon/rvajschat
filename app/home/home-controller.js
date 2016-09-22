@@ -47,7 +47,7 @@
       scrollToBottom();
       $timeout(function () {
         $scope.$broadcast('setFocus');
-      }, 1000);
+      }, 750);
     };
 
     vm.submit = function () {

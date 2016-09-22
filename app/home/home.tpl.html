@@ -40,10 +40,9 @@
 
     <div layout="column" layout-margin class="chat-message-form">
       <form novalidate ng-submit="home.submit()">
-        <div layout="row">
-          <md-input-container flex class="md-block">
-            <label>Message</label>
-            <input focus-on="setFocus" md-maxlength="140" name="newMessage" ng-model="home.newMessage" />
+        <div layout="row" layout-align="center center">
+          <md-input-container flex md-no-float class="md-block">
+            <input focus-on="setFocus" placeholder="Type Message Here" md-maxlength="140" maxlength="140" name="newMessage" ng-model="home.newMessage" />
           </md-input-container>
           <md-button class="md-primary md-fab md-mini" type="submit" aria-label="Send Message">
             <ng-md-icon icon="send"></ng-md-icon>
