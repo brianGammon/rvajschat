@@ -8,29 +8,16 @@ html, body {
 
 .body-wrapper {
   height: 100%;
+  background: whitesmoke; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#3f51b5, whitesmoke); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#3f51b5, whitesmoke); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#3f51b5, whitesmoke); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#3f51b5, whitesmoke); /* Standard syntax */
 }
 
-md-toolbar h1 {
-  font-size: 1.250em;
-  font-weight: 400;
-  margin-left: 10px;
-}
-
-.userForm {
-  min-width: 310px;
-}
-.header-text {
-  font-size: small;
-}
-
-md-list-item > button {
-  width:100%;
-  text-align:left !important;
-}
-
-md-list .md-button.selected {
-  color: #2196F3;
-  font-weight: bold;
+/* Sidenav and side nav list items*/
+md-sidenav {
+  background-color: whitesmoke;
 }
 
 md-sidenav  md-list {
@@ -41,18 +28,26 @@ md-sidenav  md-list {
   padding-left: 10px;
 }
 
-.chat-content {
-  background-color: whitesmoke;
+md-list-item > button {
+  width:100%;
+  text-align:left !important;
 }
 
-.chat-container {
-    height: 500px;
+md-list .md-button.selected {
+  background-color: #E0E0E0;
+  color: #2196F3;
+  font-weight: bold;
+}
+
+/* Chat window styles on Home */
+.chat-header {
+  color: white;
 }
 
 .chat-bubbles {
     background-color: white;
     margin-bottom: 5px;
-    min-height: 400px;
+    height: calc(100vh - 165px);
     overflow: auto;
 }
 
@@ -82,8 +77,14 @@ md-sidenav  md-list {
     margin: 10px 0 0 0;
 }
 
+/* User Sign Up and Sign In */
+.userForm {
+  min-width: 310px;
+  background-color: white;
+}
+
 .signin-text {
-  background-color: #2196F3;
+  background-color: #8C9EFF;
   margin: -8px;
 }
 

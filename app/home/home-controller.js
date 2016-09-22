@@ -29,6 +29,14 @@
       left.open();
     });
 
+    // Set observer for auth changed
+    User.onAuth(function (user) {
+      vm.currentUser = user;
+      if (!user) {
+        $state.go('signup');
+      }
+    });
+
     // Register visitor for scrolling on msg received
     Chat.onMessageReceived(scrollToBottom);
 
@@ -52,6 +60,10 @@
 
     vm.toggleList = function () {
       $mdSidenav('left').toggle();
+    };
+
+    vm.logout = function () {
+      User.signOut();
     };
 
     // Internal methods
