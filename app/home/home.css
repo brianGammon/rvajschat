@@ -1,7 +1,6 @@
 html, body {
   font-family: 'Roboto', sans-serif;
   font-size:14px;
-  /*height:100%;*/
   margin: 0px;
   padding: 0px;
 }
@@ -13,6 +12,11 @@ html, body {
   background: -o-linear-gradient(#3f51b5, whitesmoke); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#3f51b5, whitesmoke); /* For Firefox 3.6 to 15 */
   background: linear-gradient(#3f51b5, whitesmoke); /* Standard syntax */
+}
+
+ui-view {
+  display: inherit;
+  width: 100%;
 }
 
 /* Sidenav and side nav list items*/
@@ -80,7 +84,6 @@ md-list .md-button.selected {
 
 /* User Sign Up and Sign In */
 .userForm {
-  margin-top: 20px;
   min-width: 310px;
   background-color: white;
 }
