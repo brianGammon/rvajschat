@@ -80,6 +80,7 @@ md-list .md-button.selected {
 
 /* User Sign Up and Sign In */
 .userForm {
+  margin-top: 20px;
   min-width: 310px;
   background-color: white;
 }
