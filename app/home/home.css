@@ -51,7 +51,7 @@ md-list .md-button.selected {
 .chat-bubbles {
     background-color: white;
     margin-bottom: 5px;
-    height: calc(100vh - 165px);
+    height: calc(100vh - 170px);
     overflow: auto;
 }
 
@@ -84,12 +84,15 @@ md-list .md-button.selected {
 
 /* User Sign Up and Sign In */
 .userForm {
+  margin-top: 20px;
   min-width: 310px;
   background-color: white;
+  border-radius: 10px;
 }
 
 .signin-text {
-  background-color: #8C9EFF;
+  background-color: #2196F3;
+  border-radius: 10px 10px 0 0;
   margin: -8px;
 }
 
