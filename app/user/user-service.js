@@ -12,9 +12,17 @@
     .module('user')
     .factory('User', User);
 
-  function User($q) {
+  function User($http) {
     var UserBase = {},
         callbacks = [],
+        // currentUser = {
+        //   username: 'Brian',
+        //   email: 'bgammon@gmail.com',
+        //   id: 13,
+        //   createdAt: '2016-10-02T22:31:59.554Z',
+        //   updatedAt: '2016-10-02T22:31:59.554Z',
+        //   accessToken: 'BybSGdqwyVUBWxQGt4xwGMDFVqFchMx5H+ZKOBg5ylJWXXHCxsbdi8l9V74AHx5o'
+        // };
         currentUser = null;
 
     // instance member to track logged in user
@@ -26,38 +34,23 @@
     };
 
     UserBase.signIn = function (credentials) {
-      // stub for development
-      // using $q to similate async request to API
-      var deferred = $q.defer(),
-          user = {
-            userName: credentials.userName
-          };
-
-      authChanged(user);
-      deferred.resolve(user);
-
-      return deferred.promise;
+      return $http.post('http://104.236.80.163:1337/api/v1/auth/local', credentials)
+        .then(function (result) {
+          var user = result.data.user;
+          console.log(result);
+          authChanged(user);
+          return user;
+        });
     };
 
     UserBase.signUp = function (credentials) {
-      // stub for development
-      // using $q to similate async request to API
-      var deferred = $q.defer(),
-          user;
-
-      // fake a common API error condition
-      if (credentials.userName === 'Tester') {
-        deferred.reject('User name is taken');
-      } else {
-        // hard code user and return
-        user = {
-          userName: credentials.userName
-        };
-        authChanged(user);
-        deferred.resolve(user);
-      }
-
-      return deferred.promise;
+      return $http.post('http://104.236.80.163:1337/api/v1/auth/local/register', credentials)
+        .then(function (result) {
+          var user = result.data.user;
+          console.log(result);
+          authChanged(user);
+          return user;
+        });
     };
 
     UserBase.signOut = function () {

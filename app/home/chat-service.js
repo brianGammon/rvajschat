@@ -12,7 +12,7 @@
     .module('home')
     .factory('Chat', Chat);
 
-  function Chat(User, $timeout) {
+  function Chat(User, $timeout, $http) {
     var ChatBase = {},
         chatCache = {},
         callbacks = [];
@@ -25,7 +25,11 @@
     };
 
     ChatBase.getChatUsers = function () {
-      return getMockUsers();
+      return $http.get('http://104.236.80.163:1337/user')
+        .then(function (result) {
+          console.log(result);
+          return result.data;
+        });
     };
 
     ChatBase.getChats = function (localUser, chatUser) {
@@ -33,6 +37,18 @@
         chatCache[chatUser] = getMockChats(localUser, chatUser);
       }
       return chatCache[chatUser];
+    };
+
+    ChatBase.getChatsApi = function () {
+      return $http.get('http://104.236.80.163:1337/api/v1/rvajs')
+        .then(function (result) {
+          console.log(result);
+          return result.data.chats;
+        });
+    };
+
+    ChatBase.sendMessageApi = function (message) {
+      return $http.post('http://104.236.80.163:1337/api/v1/chat', message);
     };
 
     ChatBase.sendMessage = function (localUser, chatUser, message) {
@@ -63,28 +79,28 @@
       chatCache = {};
     }
 
-    function getMockUsers() {
-      return [
-        {
-          name: 'Lia Lugo'
-        },
-        {
-          name: 'George Duke'
-        },
-        {
-          name: 'Gener Delosreyes'
-        },
-        {
-          name: 'Lawrence Ray'
-        },
-        {
-          name: 'Ernesto Urbina'
-        },
-        {
-          name: 'Gani Ferrer'
-        }
-      ];
-    }
+    // function getMockUsers() {
+    //   return [
+    //     {
+    //       name: 'Lia Lugo'
+    //     },
+    //     {
+    //       name: 'George Duke'
+    //     },
+    //     {
+    //       name: 'Gener Delosreyes'
+    //     },
+    //     {
+    //       name: 'Lawrence Ray'
+    //     },
+    //     {
+    //       name: 'Ernesto Urbina'
+    //     },
+    //     {
+    //       name: 'Gani Ferrer'
+    //     }
+    //   ];
+    // }
 
     function getMockChats(localUser, chatUser) {
       if (chatUser === 'Gener Delosreyes') {

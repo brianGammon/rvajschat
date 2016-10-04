@@ -31,11 +31,13 @@
       }
     };
 
-    function onSuccess() {
+    function onSuccess(data) {
+      console.log(data);
       $state.go('home');
     }
 
     function onError(error) {
+      console.log(error);
       vm.errorMessage = error;
     }
   }

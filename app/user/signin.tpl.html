@@ -8,13 +8,13 @@
     </div>
     <form name="user.loginForm" novalidate>
       <md-input-container class="md-block">
-        <label>User Name</label>
-        <input required type="name" name="userName" ng-model="user.credentials.userName" minlength="4" maxlength="100"
+        <label>User Name or Email</label>
+        <input required type="name" name="identifier" ng-model="user.credentials.identifier"
         />
 
-        <div ng-messages="user.loginForm.userName.$error">
-          <div ng-message-exp="['required', 'minlength', 'maxlength']">
-            Required, and must be 4 to 100 characters long
+        <div ng-messages="user.loginForm.identifier.$error">
+          <div ng-message-exp="['required']">
+            Please enter your user name or email.
           </div>
         </div>
       </md-input-container>

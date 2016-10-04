@@ -1,13 +1,13 @@
 <div layout="row">
-  <md-sidenav ng-click="home.toggleList()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left">
+  <md-sidenav ng-click="home.toggleList()" md-component-id="left">
     <div class="sidenav-title">
-      <h4>Available To Chat:</h4>
+      <h3>RVA.js Chat Service</h3>
     </div>
+
     <md-list>
+      <div class="user-list-header">Registered Users:</div>
       <md-list-item ng-repeat="user in home.users">
-        <md-button ng-click="home.selectUser(user)" ng-class="{'selected' : user === home.selected }">
-          {{user.name}}
-        </md-button>
+        {{user.username}}
       </md-list-item>
     </md-list>
   </md-sidenav>
@@ -15,14 +15,16 @@
   <div layout="column" layout-fill class="chat-content">
 
     <div class="chat-header" layout="row" layout-align="space-between center">
-      <div layout="row" layout-align="start center" layout-padding>
-        <md-button class="md-icon-button" hide-gt-sm ng-click="home.toggleList()" aria-label="Show User List">
-          <ng-md-icon icon="menu"></ng-md-icon>
+      <div layout="row" layout-align="start center">
+        <md-button class="md-icon-button" ng-click="home.toggleList()" aria-label="Show User List">
+          <ng-md-icon icon="group"></ng-md-icon>
         </md-button>
-        <div ng-if="home.selected">Chatting: <strong>{{home.selected.name}}</strong></div>
-        <div ng-if="!home.selected">No one selected</div>
+        <md-button class="md-icon-button" ng-click="home.refreshChats()" aria-label="Sign Out">
+          <ng-md-icon icon="refresh"></ng-md-icon>
+        </md-button>
       </div>
-      <div>
+      <div layout="row" layout-align="start center">
+        <div>Signed in as: {{home.localUser.username}}</div>
         <md-button class="md-icon-button" ng-click="home.logout()" aria-label="Sign Out">
           <ng-md-icon icon="logout"></ng-md-icon>
         </md-button>
@@ -30,10 +32,10 @@
     </div>
 
     <div layout="column" layout-margin class="chat-bubbles md-whiteframe-z2">
-      <div layout="column" layout-padding layout-align="{{msg.sender !== home.localUser.userName ? 'start start' : 'start end'}}"
+      <div layout="column" layout-padding layout-align="{{msg.senderUser.username !== home.localUser.username ? 'start start' : 'start end'}}"
         class="chat-message" ng-repeat="msg in home.chats">
-        <div class="chat-sender">{{msg.sender}}</div>
-        <div class="chat-text" ng-class="{'left' : msg.sender !== home.localUser.userName }">{{msg.text}}</div>
+        <div class="chat-sender">{{msg.senderUser.username}}</div>
+        <div class="chat-text" ng-class="{'left' : msg.senderUser.username !== home.localUser.username }">{{msg.message}}</div>
       </div>
       <div id="bottom"></div>
     </div>
@@ -42,7 +44,7 @@
       <form novalidate ng-submit="home.submit()">
         <div layout="row" layout-align="center center">
           <md-input-container flex md-no-float class="md-block">
-            <input focus-on="setFocus" ng-disabled="!home.selected" placeholder="{{home.selected ? 'Type Message Here' : 'Select someone to chat with'}}" md-maxlength="140" maxlength="140" name="newMessage" ng-model="home.newMessage" />
+            <input focus-on="setFocus" placeholder="Type Message Here" md-maxlength="140" maxlength="140" name="newMessage" ng-model="home.newMessage" />
           </md-input-container>
           <md-button class="md-primary md-fab md-mini" type="submit" aria-label="Send Message">
             <ng-md-icon icon="send"></ng-md-icon>

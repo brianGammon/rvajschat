@@ -24,10 +24,12 @@
     vm.currentMessage = '';
     vm.localUser = currentUser;
     vm.selected = null;
-    vm.users = Chat.getChatUsers();
-    $mdSidenav('left').then(function (left) {
-      left.open();
-    });
+    Chat.getChatUsers()
+      .then(function (data) {
+        vm.users = data;
+      });
+
+    getChatMessages();
 
     // Set observer for auth changed
     User.onAuth(function (user) {
@@ -40,21 +42,23 @@
     // Register visitor for scrolling on msg received
     Chat.onMessageReceived(scrollToBottom);
 
-    // Methods called from views
-    vm.selectUser = function (user) {
-      vm.selected = angular.isNumber(user) ? vm.users[user] : user;
-      vm.chats = Chat.getChats(vm.localUser.userName, vm.selected.name);
-      scrollToBottom();
-      $timeout(function () {
-        $scope.$broadcast('setFocus');
-      }, 750);
+    vm.refreshChats = function () {
+      getChatMessages();
     };
 
     vm.submit = function () {
+      var chat;
       if (vm.newMessage) {
-        Chat.sendMessage(vm.localUser.userName, vm.selected.name, vm.newMessage);
-        vm.newMessage = '';
-        scrollToBottom();
+        chat = {
+          senderUser: vm.localUser.id,
+          message: vm.newMessage
+        };
+
+        Chat.sendMessageApi(chat).then(function (result) {
+          console.log(result);
+          vm.newMessage = '';
+          getChatMessages();
+        });
       }
     };
 
@@ -65,6 +69,16 @@
     vm.logout = function () {
       User.signOut();
     };
+
+    function getChatMessages() {
+      Chat.getChatsApi().then(function (chats) {
+        vm.chats = chats;
+        scrollToBottom();
+        $timeout(function () {
+          $scope.$broadcast('setFocus');
+        }, 750);
+      });
+    }
 
     // Internal methods
     function scrollToBottom() {

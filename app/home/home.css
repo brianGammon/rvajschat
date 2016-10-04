@@ -43,6 +43,10 @@ md-list .md-button.selected {
   font-weight: bold;
 }
 
+.user-list-header {
+  padding-left: 8px;
+}
+
 /* Chat window styles on Home */
 .chat-header {
   color: white;
@@ -68,7 +72,7 @@ md-list .md-button.selected {
 }
 .chat-text {
     border-radius: 10px;
-    max-width: 300px;
+    max-width: 320px;
     color: white;
     background-color:#2196F3;
     word-break: break-all;

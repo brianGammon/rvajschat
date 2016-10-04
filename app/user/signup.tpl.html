@@ -8,9 +8,9 @@
     </div>
     <form name="user.loginForm" novalidate>
       <md-input-container class="md-block">
-        <label>Name</label>
-        <input required type="name" name="userName" ng-model="user.credentials.userName" minlength="4" maxlength="12" />
-        <div ng-messages="user.loginForm.userName.$error">
+        <label>User Name</label>
+        <input required type="name" name="username" ng-model="user.credentials.username" minlength="4" maxlength="12" />
+        <div ng-messages="user.loginForm.username.$error">
           <div ng-message-exp="['required', 'minlength', 'maxlength']">
             Required, and must be 4 to 12 characters long
           </div>
@@ -18,11 +18,21 @@
       </md-input-container>
 
       <md-input-container class="md-block">
+        <label>Email</label>
+        <input required type="email" name="email" ng-pattern="/^.+@.+\..+$/" ng-model="user.credentials.email" />
+        <div ng-messages="user.loginForm.email.$error">
+          <div ng-message-exp="['required','pattern']">
+            Please enter an email address.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
         <label>Password</label>
-        <input ng-model="user.credentials.password" name="password" type="password" minlength="3" required/>
+        <input ng-model="user.credentials.password" name="password" type="password" minlength="8" required/>
         <div ng-messages="user.loginForm.password.$error">
           <div ng-message-exp="['required', 'minlength']">
-            Password must be at least 3 characters.
+            Password must be at least 8 characters.
           </div>
         </div>
       </md-input-container>
