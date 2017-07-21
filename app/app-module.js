@@ -14,5 +14,6 @@
       'user',
       'ngMdIcons',
       'ngMessages'
-    ]);
+    ])
+    .constant('API', 'http://104.236.199.3:1337');
 }());

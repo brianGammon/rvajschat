@@ -12,7 +12,7 @@
     .module('home')
     .factory('Chat', Chat);
 
-  function Chat(User, $timeout, $http) {
+  function Chat(User, $timeout, $http, API) {
     var ChatBase = {},
         chatCache = {},
         callbacks = [];
@@ -25,7 +25,7 @@
     };
 
     ChatBase.getChatUsers = function () {
-      return $http.get('http://104.236.80.163:1337/user')
+      return $http.get(API + '/user')
         .then(function (result) {
           console.log(result);
           return result.data;
@@ -40,7 +40,7 @@
     };
 
     ChatBase.getChatsApi = function () {
-      return $http.get('http://104.236.80.163:1337/api/v1/rvajs')
+      return $http.get(API + '/api/v1/rvajs')
         .then(function (result) {
           console.log(result);
           return result.data.chats;
@@ -48,7 +48,7 @@
     };
 
     ChatBase.sendMessageApi = function (message) {
-      return $http.post('http://104.236.80.163:1337/api/v1/chat', message);
+      return $http.post(API + '/api/v1/chat', message);
     };
 
     ChatBase.sendMessage = function (localUser, chatUser, message) {

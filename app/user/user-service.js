@@ -12,7 +12,7 @@
     .module('user')
     .factory('User', User);
 
-  function User($http) {
+  function User($http, API) {
     var UserBase = {},
         callbacks = [],
         // currentUser = {
@@ -34,7 +34,7 @@
     };
 
     UserBase.signIn = function (credentials) {
-      return $http.post('http://104.236.80.163:1337/api/v1/auth/local', credentials)
+      return $http.post(API + '/api/v1/auth/local', credentials)
         .then(function (result) {
           var user = result.data.user;
           console.log(result);
@@ -44,7 +44,7 @@
     };
 
     UserBase.signUp = function (credentials) {
-      return $http.post('http://104.236.80.163:1337/api/v1/auth/local/register', credentials)
+      return $http.post(API + '/api/v1/auth/local/register', credentials)
         .then(function (result) {
           var user = result.data.user;
           console.log(result);

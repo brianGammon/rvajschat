@@ -19,28 +19,29 @@
     // Redirect to login if not signed in
     if (!currentUser) {
       $state.go('signup');
-    }
-    // Initialize base state
-    vm.currentMessage = '';
-    vm.localUser = currentUser;
-    vm.selected = null;
-    Chat.getChatUsers()
-      .then(function (data) {
-        vm.users = data;
+    } else {
+      // Initialize base state
+      vm.currentMessage = '';
+      vm.localUser = currentUser;
+      vm.selected = null;
+      Chat.getChatUsers()
+        .then(function (data) {
+          vm.users = data;
+        });
+
+      getChatMessages();
+
+      // Set observer for auth changed
+      User.onAuth(function (user) {
+        vm.currentUser = user;
+        if (!user) {
+          $state.go('signup');
+        }
       });
 
-    getChatMessages();
-
-    // Set observer for auth changed
-    User.onAuth(function (user) {
-      vm.currentUser = user;
-      if (!user) {
-        $state.go('signup');
-      }
-    });
-
-    // Register visitor for scrolling on msg received
-    Chat.onMessageReceived(scrollToBottom);
+      // Register visitor for scrolling on msg received
+      Chat.onMessageReceived(scrollToBottom);
+    }
 
     vm.refreshChats = function () {
       getChatMessages();
